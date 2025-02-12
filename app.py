@@ -6,6 +6,12 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+# page tittle and page icon
+st.set_page_config(
+    page_title= 'Data Analytics Portal',
+    page_icon='📈'
+)
+
 # Load or initialize data
 DATA_FILE = "placement_records.csv"
 ADMIN_CREDENTIALS = {"admin": "password123"}  # Change this to secure login
@@ -57,11 +63,7 @@ if branch_filter:
 if company_filter:
     filtered_data = filtered_data[filtered_data["Company"].isin(company_filter)]
 
-# page tittle and page icon
-st.set_page_config(
-    page_title= 'Data Analytics Portal',
-    page_icon='📈'
-)
+
 
 #Tittle
 st.title(':rainbow[Data Analytics Portal]')
