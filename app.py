@@ -58,7 +58,7 @@ if company_filter:
     filtered_data = filtered_data[filtered_data["Company"].isin(company_filter)]
 
 # Display data
-st.write("### Placement Records", filtered_data)
+st.title(" MSIT Placement Records", filtered_data)
 
 # Placement Statistics
 st.write("## Placement Statistics")
