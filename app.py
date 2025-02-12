@@ -1,14 +1,12 @@
 
 
-#runing ->  python -m streamlit run app.py in terminal
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# page tittle and page icon
+# Page title and icon
 st.set_page_config(
-    page_title= 'MSIT Placement Records',
+    page_title='MSIT Placement Records',
     page_icon='📈'
 )
 
@@ -63,11 +61,9 @@ if branch_filter:
 if company_filter:
     filtered_data = filtered_data[filtered_data["Company"].isin(company_filter)]
 
-
-
-#Tittle
+# Title
 st.title(':rainbow[MSIT Placement Records]')
-# subHeader and divider
+# Subheader and divider
 st.subheader(':gray[Placement Statistics]', divider='rainbow')
 
 # Display filtered data
@@ -91,6 +87,13 @@ if not filtered_data.empty:
         st.plotly_chart(fig)
 else:
     st.warning("No data available for selected filters.")
+
+# Show data table
+st.subheader("Filtered Placement Data")
+st.dataframe(filtered_data)
+
+st.subheader("Full Placement Data")
+st.dataframe(data)
 
 # Admin Section to Add/Delete Data
 if st.session_state.admin_logged_in:
