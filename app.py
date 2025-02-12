@@ -92,8 +92,7 @@ else:
 st.subheader("Filtered Placement Data")
 st.dataframe(filtered_data)
 
-st.subheader("Full Placement Data")
-st.dataframe(data)
+
 
 # Admin Section to Add/Delete Data
 if st.session_state.admin_logged_in:
