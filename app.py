@@ -119,3 +119,10 @@ if st.session_state.admin_logged_in:
         st.success(f"Records for {delete_company} deleted successfully!")
 else:
     st.warning("Admin login required to add or delete records.")
+
+st.markdown(
+    """
+    <div style="height: 5px; background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); border-radius: 5px;"></div>
+    """,
+    unsafe_allow_html=True
+)
