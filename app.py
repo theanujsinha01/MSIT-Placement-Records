@@ -77,6 +77,13 @@ if not filtered_data.empty:
     st.metric(label="Total Students Placed", value=total_students_placed)
     st.metric(label="Average Package (LPA)", value=f"{avg_package:.2f}" if not pd.isna(avg_package) else "N/A")
 
+    st.markdown(
+    """
+    <div style="height: 3px; background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); border-radius: 5px;"></div>
+    """,
+    unsafe_allow_html=True
+    )
+
 
     
     chart_type = st.selectbox("Select Chart Type", ["Bar Chart", "Pie Chart", "Line Chart"])
@@ -120,9 +127,4 @@ if st.session_state.admin_logged_in:
 else:
     st.warning("Admin login required to add or delete records.")
 
-st.markdown(
-    """
-    <div style="height: 5px; background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); border-radius: 5px;"></div>
-    """,
-    unsafe_allow_html=True
-)
+
