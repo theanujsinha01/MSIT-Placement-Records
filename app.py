@@ -8,7 +8,7 @@ import plotly.express as px
 
 # page tittle and page icon
 st.set_page_config(
-    page_title= 'Data Analytics Portal',
+    page_title= 'MSIT Placement Records',
     page_icon='📈'
 )
 
@@ -70,8 +70,7 @@ st.title(':rainbow[MSIT Placement Records]')
 # subHeader and divider
 st.subheader(':gray[Placement Statistics]', divider='rainbow')
 
-# Placement Statistics
-st.write("## Placement Statistics")
+# Display filtered data
 if not filtered_data.empty:
     total_students_placed = filtered_data["Placed_Students"].sum()
     avg_package = filtered_data["Package"].mean()
