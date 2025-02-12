@@ -66,6 +66,10 @@ st.title(':rainbow[MSIT Placement Records]')
 # Subheader and divider
 st.subheader(':gray[Placement Statistics]', divider='rainbow')
 
+# Show data table
+st.subheader("Filtered Placement Data")
+st.dataframe(filtered_data)
+
 # Display filtered data
 if not filtered_data.empty:
     total_students_placed = filtered_data["Placed_Students"].sum()
@@ -88,9 +92,7 @@ if not filtered_data.empty:
 else:
     st.warning("No data available for selected filters.")
 
-# Show data table
-st.subheader("Filtered Placement Data")
-st.dataframe(filtered_data)
+
 
 
 
