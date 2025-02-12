@@ -77,8 +77,10 @@ if not filtered_data.empty:
     
     st.metric(label="Total Students Placed", value=total_students_placed)
     st.metric(label="Average Package (LPA)", value=f"{avg_package:.2f}" if not pd.isna(avg_package) else "N/A")
+
+    st.subheader( divider='rainbow')
     
-    chart_type = st.selectbox("Select Chart Type", ["Bar Chart", "Pie Chart", "Line Chart"])
+    chart_type = st.selectbox("Select Chart Type", ["","Bar Chart", "Pie Chart", "Line Chart"])
 
     if chart_type == "Bar Chart":
         fig = px.bar(filtered_data, x="Company", y="Placed_Students", color="Year", barmode="group")
