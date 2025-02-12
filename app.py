@@ -57,8 +57,16 @@ if branch_filter:
 if company_filter:
     filtered_data = filtered_data[filtered_data["Company"].isin(company_filter)]
 
-# Display data
-st.write("# MSIT Placement Records", filtered_data)
+# page tittle and page icon
+st.set_page_config(
+    page_title= 'Data Analytics Portal',
+    page_icon='📈'
+)
+
+#Tittle
+st.title(':rainbow[Data Analytics Portal]')
+# subHeader and divider
+st.subheader(':gray[Explore Data with ease.]', divider='rainbow')
 
 # Placement Statistics
 st.write("## Placement Statistics")
