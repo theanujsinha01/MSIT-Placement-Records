@@ -67,7 +67,6 @@ st.title(':rainbow[MSIT Placement Records]')
 st.subheader(':gray[Placement Statistics]', divider='rainbow')
 
 # Show data table
-st.subheader("Filtered Placement Data")
 st.dataframe(filtered_data)
 
 # Display filtered data
