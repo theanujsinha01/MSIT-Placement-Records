@@ -80,7 +80,7 @@ if not filtered_data.empty:
 
     st.subheader( divider='rainbow')
     
-    chart_type = st.selectbox("Select Chart Type", ["","Bar Chart", "Pie Chart", "Line Chart"])
+    chart_type = st.selectbox("Select Chart Type", ["Bar Chart", "Pie Chart", "Line Chart"])
 
     if chart_type == "Bar Chart":
         fig = px.bar(filtered_data, x="Company", y="Placed_Students", color="Year", barmode="group")
