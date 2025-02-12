@@ -66,9 +66,9 @@ if company_filter:
 
 
 #Tittle
-st.title(':rainbow[Data Analytics Portal]')
+st.title(':rainbow[MSIT Placement Data Analytics Portal]')
 # subHeader and divider
-st.subheader(':gray[Explore Data with ease.]', divider='rainbow')
+st.subheader(':gray[Placement Statistics]', divider='rainbow')
 
 # Placement Statistics
 st.write("## Placement Statistics")
