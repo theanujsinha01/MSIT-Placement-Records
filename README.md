@@ -49,12 +49,3 @@ To run this app locally, follow these steps:
 ## Contributing
 If you would like to contribute, feel free to fork the repository and submit a pull request with your improvements.
 
-## License
-This project is licensed under the MIT License.
-"""
-
-# Write the content to README.md
-with open("README.md", "w", encoding="utf-8") as file:
-    file.write(readme_content)
-
-print("README.md file has been created successfully!")
