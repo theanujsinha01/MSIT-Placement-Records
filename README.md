@@ -5,6 +5,9 @@ This is a Streamlit web application that provides insights into the placement re
 
 ### LIVE : https://msit-placement-records.streamlit.app/
 
+![](https://github.com/user-attachments/assets/7c4f5e10-84fa-4072-99e7-f9e29e8ee993)
+
+
 ## Features
 - Interactive visualizations of placement data
 - Company-wise placement records
