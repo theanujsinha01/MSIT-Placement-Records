@@ -72,7 +72,7 @@ if company_filter:
     filtered_data = filtered_data[filtered_data["Company"].isin(company_filter)]
 
 # Main UI
-st.title(':rainbow[📊 MSIT Placement Records]')
+st.title(':rainbow[ MSIT Placement Records]')
 st.subheader(':gray[Placement Statistics]', divider='rainbow')
 
 st.dataframe(filtered_data, use_container_width=True)
