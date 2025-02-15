@@ -1,5 +1,4 @@
 
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -95,8 +94,8 @@ if not filtered_data.empty:
     fig1 = px.pie(filtered_data, names="Package", values="Placed_Students", title="Distribution of Students by Package")
     st.plotly_chart(fig1, use_container_width=True)
     
-    st.subheader("📊 Branch vs Package Distribution")
-    fig2 = px.pie(filtered_data, names="Branch", values="Package", title="Branch-wise Package Distribution")
+    st.subheader("📊 Branch vs No. of Students Placed")
+    fig2 = px.pie(filtered_data, names="Branch", values="Placed_Students", title="Branch-wise Student Placement Distribution")
     st.plotly_chart(fig2, use_container_width=True)
 else:
     st.warning("⚠️ No data available for selected filters.")
