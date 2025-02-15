@@ -79,15 +79,19 @@ st.dataframe(filtered_data, use_container_width=True)
 
 # Display filtered data
 if not filtered_data.empty:
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4, col5 = st.columns(5)
     
     total_students_placed = filtered_data["Placed_Students"].sum()
     avg_package = filtered_data["Package"].mean()
+    min_package = filtered_data["Package"].min()
+    max_package = filtered_data["Package"].max()
     median_package = filtered_data["Package"].median()
     
     col1.metric(label="🎓 Total Students Placed", value=total_students_placed)
     col2.metric(label="💰 Average Package (LPA)", value=f"{avg_package:.2f}" if not pd.isna(avg_package) else "N/A")
-    col3.metric(label="📈 Median Package (LPA)", value=f"{median_package:.2f}" if not pd.isna(median_package) else "N/A")
+    col3.metric(label="📉 Min Package (LPA)", value=f"{min_package:.2f}" if not pd.isna(min_package) else "N/A")
+    col4.metric(label="📈 Max Package (LPA)", value=f"{max_package:.2f}" if not pd.isna(max_package) else "N/A")
+    col5.metric(label="📁 Median Package (LPA)", value=f"{median_package:.2f}" if not pd.isna(median_package) else "N/A")
 
     st.markdown(
     """
@@ -125,10 +129,10 @@ if st.session_state.admin_logged_in:
         save_data(data)
         st.success("🎉 Record added successfully!")
 
-    delete_company = st.selectbox("🗑 Select Company to Delete", data["Company"].unique() if not data.empty else [])
+    delete_company = st.selectbox("🛢 Select Company to Delete", data["Company"].unique() if not data.empty else [])
     if st.button("❌ Delete Record"):
         data = data[data["Company"] != delete_company]
         save_data(data)
-        st.success(f"🗑 Records for {delete_company} deleted successfully!")
+        st.success(f"🛢 Records for {delete_company} deleted successfully!")
 else:
     st.warning("🔑 Admin login required to add or delete records.")
