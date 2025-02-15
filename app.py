@@ -92,23 +92,11 @@ if not filtered_data.empty:
     col6.metric(label="🏢 No of Companies Visited", value=num_companies)
 
     st.subheader("📊 Placement Insights: Package vs Students Placed")
-    chart_type = st.selectbox("📊 Select Chart Type", ["Bar Chart", "Pie Chart", "Box Plot"], key='chart_select')
-
-    # Define package ranges for better grouping
-    bins = [0, 5, 10, 20, 50, 100]
-    labels = ["<5 LPA", "5-10 LPA", "10-20 LPA", "20-50 LPA", "50+ LPA"]
-    filtered_data["Package Range"] = pd.cut(filtered_data["Package"], bins=bins, labels=labels)
-
-    if chart_type == "Bar Chart":
-        fig = px.bar(filtered_data, x="Package Range", y="Placed_Students", color="Year", barmode="group", title="Number of Students Placed at Different Salary Ranges")
-        st.plotly_chart(fig, use_container_width=True)
-
-    elif chart_type == "Pie Chart":
-        fig = px.pie(filtered_data, names="Package Range", values="Placed_Students", title="Distribution of Students by Package Range")
-        st.plotly_chart(fig, use_container_width=True)
-
-    elif chart_type == "Box Plot":
-        fig = px.box(filtered_data, x="Year", y="Package", points="all", title="Package Distribution by Year")
-        st.plotly_chart(fig, use_container_width=True)
+    fig1 = px.pie(filtered_data, names="Package", values="Placed_Students", title="Distribution of Students by Package")
+    st.plotly_chart(fig1, use_container_width=True)
+    
+    st.subheader("📊 Branch vs Package Distribution")
+    fig2 = px.pie(filtered_data, names="Branch", values="Package", title="Branch-wise Package Distribution")
+    st.plotly_chart(fig2, use_container_width=True)
 else:
     st.warning("⚠️ No data available for selected filters.")
