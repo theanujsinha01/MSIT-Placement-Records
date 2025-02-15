@@ -67,6 +67,11 @@ if year_filter:
 if branch_filter:
     filtered_data = filtered_data[filtered_data["Branch"].isin(branch_filter)]
 
+# Categorize Package Ranges
+bins = [0, 5, 10, 15, 20, float('inf')]
+labels = ['0-5 LPA', '5-10 LPA', '10-15 LPA', '15-20 LPA', '20+ LPA']
+filtered_data['Package Range'] = pd.cut(filtered_data['Package'], bins=bins, labels=labels, right=False)
+
 # Main UI
 st.title(':rainbow[ MSIT Placement Records]')
 st.subheader(':gray[Placement Statistics]', divider='rainbow')
@@ -90,8 +95,8 @@ if not filtered_data.empty:
     col5.metric(label="📈 Maximum Package (LPA)", value=f"{max_package:.2f}" if not pd.isna(max_package) else "N/A")
     col6.metric(label="🏢 No of Companies Visited", value=num_companies)
 
-    st.subheader("📊 Placement Insights: Package vs Students Placed")
-    fig1 = px.pie(filtered_data, names="Package", values="Placed_Students", title="Distribution of Students by Package")
+    st.subheader("📊 Placement Insights: Package Range vs Students Placed")
+    fig1 = px.pie(filtered_data, names="Package Range", values="Placed_Students", title="Distribution of Students by Package Range")
     st.plotly_chart(fig1, use_container_width=True)
     
     st.subheader("📊 Branch vs No. of Students Placed")
