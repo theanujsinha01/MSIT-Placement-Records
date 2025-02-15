@@ -104,3 +104,18 @@ if not filtered_data.empty:
     st.plotly_chart(fig2, use_container_width=True)
 else:
     st.warning("⚠️ No data available for selected filters.")
+
+# Admin Panel - Add Data
+if st.session_state.admin_logged_in:
+    st.write("## 🔧 Admin Panel - Add Placement Record")
+    year = st.number_input("Year", min_value=2000, max_value=2050, step=1)
+    company = st.text_input("🏢 Company")
+    package = st.number_input("💰 Package (LPA)", min_value=0.0, step=0.1)
+    branch = st.text_input("📚 Branch")
+    placed_students = st.number_input("🎓 Placed Students", min_value=0, step=1)
+
+    if st.button("✅ Add Record"):
+        new_record = pd.DataFrame({"Year": [year], "Company": [company], "Package": [package], "Branch": [branch], "Placed_Students": [placed_students]})
+        data = pd.concat([data, new_record], ignore_index=True)
+        save_data(data)
+        st.success("🎉 Record added successfully!")
