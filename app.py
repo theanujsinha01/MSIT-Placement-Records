@@ -105,9 +105,9 @@ if not filtered_data.empty:
 else:
     st.warning("⚠️ No data available for selected filters.")
 
-# Admin Panel - Add Data
+# Admin Panel - Add, Modify, Delete Data
 if st.session_state.admin_logged_in:
-    st.write("## 🔧 Admin Panel - Add Placement Record")
+    st.write("## 🔧 Admin Panel - Manage Placement Records")
     year = st.number_input("Year", min_value=2000, max_value=2050, step=1)
     company = st.text_input("🏢 Company")
     package = st.number_input("💰 Package (LPA)", min_value=0.0, step=0.1)
@@ -119,3 +119,16 @@ if st.session_state.admin_logged_in:
         data = pd.concat([data, new_record], ignore_index=True)
         save_data(data)
         st.success("🎉 Record added successfully!")
+
+    if not data.empty:
+        company_to_modify = st.selectbox("✏️ Select Company to Modify", data["Company"].unique())
+        if st.button("🔄 Modify Record"):
+            data.loc[data["Company"] == company_to_modify, ["Year", "Package", "Branch", "Placed_Students"]] = [year, package, branch, placed_students]
+            save_data(data)
+            st.success("✏️ Record modified successfully!")
+
+        company_to_delete = st.selectbox("🗑 Select Company to Delete", data["Company"].unique())
+        if st.button("❌ Delete Record"):
+            data = data[data["Company"] != company_to_delete]
+            save_data(data)
+            st.success("🗑 Record deleted successfully!")
