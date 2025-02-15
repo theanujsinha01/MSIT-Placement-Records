@@ -74,8 +74,23 @@ st.subheader(':gray[Placement Statistics]', divider='rainbow')
 
 st.dataframe(filtered_data, use_container_width=True)
 
-# Display filtered data
+# Display Metrics
 if not filtered_data.empty:
+    col1, col2, col3, col4, col5, col6 = st.columns(6)
+    total_students_placed = filtered_data["Placed_Students"].sum()
+    avg_package = filtered_data["Package"].mean()
+    median_package = filtered_data["Package"].median()
+    min_package = filtered_data["Package"].min()
+    max_package = filtered_data["Package"].max()
+    num_companies = filtered_data["Company"].nunique()
+    
+    col1.metric(label="🎓 Total Students Placed", value=total_students_placed)
+    col2.metric(label="💰 Average Package (LPA)", value=f"{avg_package:.2f}" if not pd.isna(avg_package) else "N/A")
+    col3.metric(label="📁 Median Package (LPA)", value=f"{median_package:.2f}" if not pd.isna(median_package) else "N/A")
+    col4.metric(label="📉 Minimum Package (LPA)", value=f"{min_package:.2f}" if not pd.isna(min_package) else "N/A")
+    col5.metric(label="📈 Maximum Package (LPA)", value=f"{max_package:.2f}" if not pd.isna(max_package) else "N/A")
+    col6.metric(label="🏢 No of Companies Visited", value=num_companies)
+
     st.subheader("📊 Placement Insights: Package vs Students Placed")
     chart_type = st.selectbox("📊 Select Chart Type", ["Bar Chart", "Pie Chart", "Box Plot"], key='chart_select')
 
