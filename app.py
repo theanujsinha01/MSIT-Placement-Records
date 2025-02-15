@@ -121,11 +121,7 @@ if st.session_state.admin_logged_in:
         st.success("🎉 Record added successfully!")
 
     if not data.empty:
-        company_to_modify = st.selectbox("✏️ Select Company to Modify", data["Company"].unique())
-        if st.button("🔄 Modify Record"):
-            data.loc[data["Company"] == company_to_modify, ["Year", "Package", "Branch", "Placed_Students"]] = [year, package, branch, placed_students]
-            save_data(data)
-            st.success("✏️ Record modified successfully!")
+        
 
         company_to_delete = st.selectbox("🗑 Select Company to Delete", data["Company"].unique())
         if st.button("❌ Delete Record"):
