@@ -1,16 +1,18 @@
+
 import streamlit as st
 import pandas as pd
-import plotly.express as px 
+import plotly.express as px
 
-# Page title
+# Page title and icon
 st.set_page_config(
     page_title='MSIT Placement Records',
+    page_icon='📈',
     layout='wide'
 )
 
 # File and login info
 DATA_FILE = "placement_records.csv"
-ADMIN_CREDENTIALS = {"admin": "password123"}  # Change this to secure login
+ADMIN_CREDENTIALS = {"admin@msit.in": "Password"}  # Change this to secure login
 
 # Load CSV data or create empty table
 def load_data():
@@ -115,11 +117,7 @@ if st.session_state.admin_logged_in:
         save_data(data)
         st.success("Record added!")
 
-    # Delete record
-    if not data.empty:
-        company_to_delete = st.selectbox("Select Company to Delete", data["Company"].unique())
-        if st.button("Delete Record"):
-            data = data[data["Company"] != company_to_delete]
-            save_data(data)
-            st.success("Record deleted!")
+
+
+ 
 
