@@ -12,7 +12,7 @@ st.set_page_config(
 
 # Load or initialize data
 DATA_FILE = "placement_records.csv"
-ADMIN_CREDENTIALS = {"admin": "password123"}  # Change this to secure login
+ADMIN_CREDENTIALS = {"admin@msit.in": "password"}  # Change this to secure login
 
 def load_data():
     try:
