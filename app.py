@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+import plotly.express as px 
 
 # Page title
 st.set_page_config(
@@ -10,7 +10,7 @@ st.set_page_config(
 
 # File and login info
 DATA_FILE = "placement_records.csv"
-ADMIN_CREDENTIALS = {"admin": "password123"}  # You can change this password
+ADMIN_CREDENTIALS = {"admin": "password123"}  # Change this to secure login
 
 # Load CSV data or create empty table
 def load_data():
