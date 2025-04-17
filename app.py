@@ -117,11 +117,5 @@ if st.session_state.admin_logged_in:
         save_data(data)
         st.success("Record added!")
 
-    # Delete record
-    if not data.empty:
-        company_to_delete = st.selectbox("Select Company to Delete", data["Company"].unique())
-        if st.button("Delete Record"):
-            data = data[data["Company"] != company_to_delete]
-            save_data(data)
-            st.success("Record deleted!")
+
 
