@@ -122,5 +122,5 @@ if st.session_state.admin_logged_in:
         # Refresh data after saving
         data = load_data()
         
-        st.success("Record added!")
+        st.success("Record added!") 
 
