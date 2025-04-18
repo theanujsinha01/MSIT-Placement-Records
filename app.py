@@ -104,7 +104,8 @@ if st.session_state.admin_logged_in:
         st.session_state.data = pd.concat([st.session_state.data, new_row], ignore_index=True)
         save_data(st.session_state.data)
         st.success("Record added successfully!")
-        st.experimental_rerun()
+        st.rerun()
+
 
 
 
