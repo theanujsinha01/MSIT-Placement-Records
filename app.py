@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import os
 
 # Page title and icon
 st.set_page_config(
@@ -22,6 +23,8 @@ def load_data():
 
 # Save data to CSV
 def save_data(data):
+    print(f"Saving data to {os.path.abspath(DATA_FILE)}")
+    print(data)  # Debugging: print data to be saved
     data.to_csv(DATA_FILE, index=False)
 
 data = load_data()
@@ -117,16 +120,16 @@ if st.session_state.admin_logged_in:
             "Placed_Students": [placed_students]
         })
 
-        # Append new record to the existing data
+        # Concatenate new record to the existing data
         data = pd.concat([data, new_record], ignore_index=True)
-        
-        # Save the updated data to CSV
-        save_data(data)
+        print(f"New data: {data}")  # Debugging: check if new record is added
 
-        # Give feedback and show updated data
+        # Save the updated data
+        save_data(data)
         st.success("Record added successfully!")
         st.write("Updated Data:")
-        st.dataframe(data) 
+        st.dataframe(data)
+
 
 
 
