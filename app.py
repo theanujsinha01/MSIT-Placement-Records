@@ -43,11 +43,11 @@ if login_button:
         st.session_state.admin_logged_in = True
         st.sidebar.success("Logged in")
     else:
-        st.sidebar.error("Wrong username or password")
+        st.sidebar.error("Incorrect username or password")
 
 if logout_button:
     st.session_state.admin_logged_in = False
-    st.sidebar.info("Logged out")
+    st.sidebar.info("You have been logged out")
 
 # Sidebar filters
 st.sidebar.header("Filters")
@@ -60,6 +60,9 @@ if year_filter:
     filtered_data = filtered_data[filtered_data["Year"].isin(year_filter)]
 if branch_filter:
     filtered_data = filtered_data[filtered_data["Branch"].isin(branch_filter)]
+
+# Make a copy before modifying
+filtered_data = filtered_data.copy()
 
 # Categorize Package Ranges
 bins = [0, 5, 10, 15, 20, float('inf')]
@@ -115,9 +118,9 @@ if st.session_state.admin_logged_in:
         })
         data = pd.concat([data, new_record], ignore_index=True)
         save_data(data)
+
+        # Refresh data after saving
+        data = load_data()
+        
         st.success("Record added!")
-
-
-
- 
 
