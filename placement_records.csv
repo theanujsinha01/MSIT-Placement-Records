@@ -1,13 +1,14 @@
 Year,Company,Package,Branch,Placed_Students
 2024,TalentServe,7.5,EEE,2
 2024,L&T,6.5,EEE,1
-2024,L&T,6,EEE,1
+2024,L&T,6.0,EEE,1
 2024,L&T,4.5,EEE,1
 2024,PlanetSpark,6.5,EEE,1
 2024,Corizo,6.5,EEE,5
 2024,Softage,4.2,EEE,1
-2024,Kimbal,8,ECE,3
+2024,Kimbal,8.0,ECE,3
 2024,Polestar,7.7,ECE,2
 2024,TalentServe,7.5,ECE,19
-2024,Vecmocon Technologies,7,ECE,1
-
+2024,Vecmocon Technologies,7.0,ECE,1
+2025,TestCompany,9.5,CSE,1
+2025,TestCompany,9.5,CSE,1
