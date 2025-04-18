@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -101,7 +100,7 @@ else:
 if st.session_state.admin_logged_in:
     st.write("### Admin Panel")
 
-    # Add new record
+    # Add new record form
     year = st.number_input("Year", min_value=2000, max_value=2050, step=1)
     company = st.text_input("Company")
     package = st.number_input("Package (LPA)", min_value=0.0, step=0.1)
@@ -109,6 +108,7 @@ if st.session_state.admin_logged_in:
     placed_students = st.number_input("Placed Students", min_value=0, step=1)
 
     if st.button("Add Record"):
+        # Creating a new record
         new_record = pd.DataFrame({
             "Year": [year],
             "Company": [company],
@@ -116,11 +116,17 @@ if st.session_state.admin_logged_in:
             "Branch": [branch],
             "Placed_Students": [placed_students]
         })
+
+        # Append new record to the existing data
         data = pd.concat([data, new_record], ignore_index=True)
+        
+        # Save the updated data to CSV
         save_data(data)
 
-        # Refresh data after saving
-        data = load_data()
-        
-        st.success("Record added!") 
+        # Give feedback and show updated data
+        st.success("Record added successfully!")
+        st.write("Updated Data:")
+        st.dataframe(data)
+
+
 
