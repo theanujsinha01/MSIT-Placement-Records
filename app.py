@@ -126,7 +126,7 @@ if st.session_state.admin_logged_in:
         # Give feedback and show updated data
         st.success("Record added successfully!")
         st.write("Updated Data:")
-        st.dataframe(data)
+        st.dataframe(data) 
 
 
 
