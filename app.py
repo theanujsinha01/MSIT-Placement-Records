@@ -26,6 +26,9 @@ if "admin_logged_in" not in st.session_state:
 if "data" not in st.session_state:
     st.session_state.data = load_data()
 
+# Clean column names to remove any extra spaces
+st.session_state.data.columns = st.session_state.data.columns.str.strip()
+
 # Sidebar login
 st.sidebar.header("Admin Login")
 username = st.sidebar.text_input("Username")
@@ -105,6 +108,7 @@ if st.session_state.admin_logged_in:
         save_data(st.session_state.data)
         st.success("Record added successfully!")
         st.rerun()
+
 
 
 
