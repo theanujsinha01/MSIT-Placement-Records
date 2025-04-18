@@ -23,10 +23,14 @@ def load_data():
 
 # Save data to CSV
 def save_data(data):
-    print(f"Saving data to {os.path.abspath(DATA_FILE)}")
-    print(data)  # Debugging: print data to be saved
-    data.to_csv(DATA_FILE, index=False)
+    try:
+        print(f"Saving data to {os.path.abspath(DATA_FILE)}")
+        data.to_csv(DATA_FILE, index=False)
+        print("Data saved successfully.")
+    except Exception as e:
+        print(f"Error while saving data: {e}")
 
+# Main code
 data = load_data()
 
 # Admin Login area
