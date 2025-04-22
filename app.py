@@ -26,7 +26,7 @@ if "admin_logged_in" not in st.session_state:
 if "data" not in st.session_state:
     st.session_state.data = load_data()
 
-# Clean column names to remove any extra spaces
+# Clean column names
 st.session_state.data.columns = st.session_state.data.columns.str.strip()
 
 # Sidebar login
@@ -45,28 +45,44 @@ if login_button:
 if logout_button:
     st.session_state.admin_logged_in = False
 
-# Filters
+# ------------------- Filters (UPDATED) -------------------
 st.sidebar.header("Filters")
 data = st.session_state.data
+
 year_filter = st.sidebar.multiselect("Select Year", sorted(data["Year"].unique()))
 branch_filter = st.sidebar.multiselect("Select Branch", sorted(data["Branch"].unique()))
+company_filter = st.sidebar.multiselect("Select Company", sorted(data["Company"].unique()))
+
+min_package, max_package = st.sidebar.slider(
+    "Package Range (LPA)",
+    min_value=float(data["Package"].min()) if not data.empty else 0.0,
+    max_value=float(data["Package"].max()) if not data.empty else 100.0,
+    value=(0.0, float(data["Package"].max()) if not data.empty else 100.0)
+)
 
 filtered_data = data.copy()
+
 if year_filter:
     filtered_data = filtered_data[filtered_data["Year"].isin(year_filter)]
 if branch_filter:
     filtered_data = filtered_data[filtered_data["Branch"].isin(branch_filter)]
+if company_filter:
+    filtered_data = filtered_data[filtered_data["Company"].isin(company_filter)]
 
-# Package Range
+filtered_data = filtered_data[
+    (filtered_data["Package"] >= min_package) & (filtered_data["Package"] <= max_package)
+]
+
+# Package Range Label
 bins = [0, 5, 10, 15, 20, float('inf')]
 labels = ['0-5 LPA', '5-10 LPA', '10-15 LPA', '15-20 LPA', '20+ LPA']
 filtered_data["Package Range"] = pd.cut(filtered_data["Package"], bins=bins, labels=labels, right=False)
 
-# Display
+# ------------------- Main Display -------------------
 st.title("MSIT Placement Records")
 st.dataframe(filtered_data, use_container_width=True)
 
-# Metrics
+# ------------------- Metrics -------------------
 if not filtered_data.empty:
     col1, col2, col3, col4, col5, col6 = st.columns(6)
     col1.metric("Total Placed", filtered_data["Placed_Students"].sum())
@@ -86,7 +102,7 @@ if not filtered_data.empty:
 else:
     st.warning("No data available for selected filters.")
 
-# Admin Panel
+# ------------------- Admin Panel -------------------
 if st.session_state.admin_logged_in:
     st.subheader("Admin Panel - Add Record")
 
@@ -109,12 +125,15 @@ if st.session_state.admin_logged_in:
         st.success("Record added successfully!")
         st.rerun()
 
+    st.subheader("Admin Panel - Delete Record")
 
+    st.dataframe(st.session_state.data.reset_index(), use_container_width=True)
 
+    if not st.session_state.data.empty:
+        row_to_delete = st.number_input("Enter Row Number to Delete", min_value=0, max_value=len(st.session_state.data)-1, step=1)
 
-
-
-
-
-
-
+        if st.button("Delete Record"):
+            st.session_state.data = st.session_state.data.drop(index=row_to_delete).reset_index(drop=True)
+            save_data(st.session_state.data)
+            st.success(f"Record at row {row_to_delete} deleted successfully!")
+            st.rerun()
